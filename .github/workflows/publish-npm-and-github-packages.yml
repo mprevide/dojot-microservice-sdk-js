@@ -17,6 +17,7 @@ jobs:
           uses: EndBug/version-check@v1
           with:
             diff-search: true
+            assume-same-version: new  
             token: ${{ secrets.GITHUB_TOKEN }}
         - name: Checks if the package version has changed
           if: steps.versioncheck.outputs.changed != 'true'
