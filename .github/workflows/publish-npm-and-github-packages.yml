@@ -13,16 +13,15 @@ jobs:
         - name: checkout
           uses: actions/checkout@v2
           with:
-            fetch-depth: 0
-            ref: test123
+            ref: master
         - name: Check if version has been updated
           id: versioncheck
           uses: EndBug/version-check@v1
           with:
             diff-search: true
         - name: Checks if the package version has changed
-          if: steps.versioncheck.outputs.changed != 'true'
-          run: 'echo "No version change " && exit 1'
+          #if: steps.versioncheck.outputs.changed != 'true'
+          run: 'echo "No version change ${{steps.versioncheck.outputs.version}}" && exit 1'
         - name: Checks whether the tag is the same as the version ignoring the begin
           if: endsWith(github.ref, steps.versioncheck.outputs.version) != true
           run: 'echo "Tag is different from the new version" && exit 1'
