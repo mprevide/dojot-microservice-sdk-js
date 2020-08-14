@@ -12,13 +12,11 @@ jobs:
         steps:
         - name: checkout
           uses: actions/checkout@v2
-          with:
-            ref: master
+          # with:
+          #   ref: master
         - name: Check if version has been updated
           id: versioncheck
           uses: EndBug/version-check@v1
-          with:
-            diff-search: true
         - name: Checks if the package version has changed
           #if: steps.versioncheck.outputs.changed != 'true'
           run: 'echo "No version change ${{steps.versioncheck.outputs.version}}" && exit 1'
