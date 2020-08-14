@@ -12,12 +12,14 @@ jobs:
         steps:
         - name: checkout
           uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+            ref: test123
         - name: Check if version has been updated
           id: versioncheck
           uses: EndBug/version-check@v1
           with:
             diff-search: true
-            token: ${{ secrets.GITHUB_TOKEN }}
         - name: Checks if the package version has changed
           if: steps.versioncheck.outputs.changed != 'true'
           run: 'echo "No version change " && exit 1'
