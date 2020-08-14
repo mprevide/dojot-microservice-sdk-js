@@ -18,6 +18,7 @@ jobs:
           with:
             diff-search: true
             assume-same-version: old  
+            static-checking: localIsNew
         - name: Checks if the package version has changed
           if: steps.versioncheck.outputs.changed != 'true'
           run: 'echo "No version change " && exit 1'
